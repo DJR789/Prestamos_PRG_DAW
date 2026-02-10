@@ -3,27 +3,27 @@ package Prestamos;
 import java.time.LocalDate;
 
 public class Usuario {
-    protected String nombre;
-    protected String email;
-    protected String numeroSocio;
-    protected LocalDate fechaRegistro;
-    protected boolean sancionado;
-    protected LocalDate fechaFinSancion;
+    private String nombre;
+    private String email;
+    private String numeroSocio;
+    private LocalDate fechaRegistro;
+    private boolean sancionado;
+    private LocalDate fechaFinSancion;
 
     public Usuario(String nombre, String email, String numeroSocio, LocalDate fechaRegistro) throws UsuarioInvalidoException {
-        if (nombre == null || nombre.trim().isEmpty()) {
+        if (nombre==null) {
             throw new UsuarioInvalidoException("El nombre no puede estar vacío");
         }
 
-        if (email == null || !email.matches(".+@.+\\..+")) {
+        if (email==null || !email.matches(".+@.+\\..+")) {
             throw new UsuarioInvalidoException("El email no tiene un formato válido");
         }
 
-        if (numeroSocio == null || !numeroSocio.matches("^SOC\\d{5}$")) {
+        if (numeroSocio==null || !numeroSocio.matches("^SOC\\d{5}$")) {
             throw new UsuarioInvalidoException("El número de socio debe tener formato SOC + 5 dígitos");
         }
 
-        if (fechaRegistro == null) {
+        if (fechaRegistro==null) {
             throw new UsuarioInvalidoException("La fecha de registro no puede ser nula");
         }
 
@@ -37,7 +37,6 @@ public class Usuario {
         this.fechaRegistro = fechaRegistro;
 
     }
-
     public void setSancionado(boolean sancionado, LocalDate fechaFinSancion){
         if (sancionado){
             this.fechaFinSancion=fechaFinSancion;
