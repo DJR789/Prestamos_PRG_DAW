@@ -47,22 +47,36 @@ public class Usuario {
         }
     }
 
-    public void sancionar(){
+    public void sancionar(int diasSancion, LocalDate fechaRegistro){
+        this.sancionado=true;
+        this.fechaFinSancion=fechaRegistro.plusDays(diasSancion);
 
     }
     public void lenvantarSancion(){
-
+        this.sancionado=false;
+        this.fechaFinSancion=null;
     }
-    /*
+
     public boolean estaSancionado(){
-        if (sancionado=){
-            return sancionado=true;
+        if(!sancionado || fechaFinSancion==null){
+            return false;
         }
-        else{
-            return sancionado=null;
-        }
-
+        return LocalDate.now().isBefore(fechaFinSancion);
     }
 
-     */
+    public String toString(){
+        String estado;
+        if (estaSancionado()){
+            estado=" Tiene sancion " + fechaFinSancion;
+        }
+        else {
+            estado= " No tiene sancion ";
+        }
+        return "El nombre es: " + nombre +
+                " El email es: " + email +
+                " El numero de socio es: " + numeroSocio +
+                " La fecha de registro es: " + fechaRegistro +
+                estado;
+    }
+
 }
