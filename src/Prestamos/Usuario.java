@@ -71,11 +71,13 @@ public class Usuario {
         else {
             estado= " No tiene sancion ";
         }
-        return "El nombre es: " + nombre +
+        return "Usuario: "+
+                "El nombre es: " + nombre +
                 " El email es: " + email +
                 " El numero de socio es: " + numeroSocio +
                 " La fecha de registro es: " + fechaRegistro +
                 estado;
     }
+
 
 }

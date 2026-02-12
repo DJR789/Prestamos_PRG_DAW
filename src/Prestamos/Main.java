@@ -4,8 +4,9 @@ import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
+        Usuario u = null;
         try {
-            Usuario u = new Usuario(
+            u = new Usuario(
                     "Juan",
                     "juan@mail.com",
                     "SOC00123",
@@ -19,6 +20,16 @@ public class Main {
         } catch (UsuarioInvalidoException e) {
             System.out.println(e.getMessage());
         }
+        try {
+            Prestamo p1=new Prestamo("LIB0002",u,"Principito", LocalDate.of(2025,05,12));
+            System.out.println(p1);
+            p1.calcularDiasRetraso();
+            p1.estaRetrasado();
+            System.out.println(p1);
+        } catch (PrestamoInvalidoException | UsuarioInvalidoException j) {
+            System.out.println(j.getMessage());
+        }
+
 
     }
 }

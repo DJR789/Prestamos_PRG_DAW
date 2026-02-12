@@ -1,6 +1,7 @@
 package Prestamos;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Prestamo {
     private String codigoLibro;
@@ -29,20 +30,47 @@ public class Prestamo {
     }
 
     public void registrarDevolucion(LocalDate fecha) throws PrestamoInvalidoException{
-        if (fecha==null || fecha.isBefore(fechaPrestamo)) {
-            throw new PrestamoInvalidoException("La fecha no puede ser nula ni anterior a la fecha de prestamo");
+        if (fecha==null ){
+            throw new PrestamoInvalidoException("La fecha no puede ser nula");
         }
+        if(fecha.isBefore(fechaPrestamo)){
+            throw new PrestamoInvalidoException("La fecha no puede ser anterior a la de prestamo");
+        }
+        this.fechaDevolucionReal=fecha;
     }
-    /*
+
     public int calcularDiasRetraso(){
-
+        LocalDate referencia;
+        if(fechaDevolucionReal!=null) {
+            referencia = fechaDevolucionReal;
+        }
+        else{
+            referencia=LocalDate.now();
+        }
+        long dias= ChronoUnit.DAYS.between(fechaDevolucionPrevista,referencia);
+        return (int) Math.max(dias,0);
     }
+
     public boolean estaRetrasado(){
-
+        return LocalDate.now().isAfter((fechaDevolucionPrevista)) && fechaDevolucionReal == null;
     }
+
     public String toString(){
+        String estadoDevolucion;
+        if(fechaDevolucionReal==null){
+            estadoDevolucion="No esta devuelto";
+        }
+        else {
+            estadoDevolucion=fechaDevolucionReal.toString();
+        }
+        return "Prestamo: " +
+                "Codigo de Libro: " +codigoLibro +
+                " Título: " + tituloLibro +
+                " Socio: " +socio +
+                " Fecha del Prestamo: " + fechaPrestamo +
+                " Fecha de devolucion prevista: " +fechaDevolucionPrevista +
+                " Fecha de devolución real: " + estadoDevolucion +
+                " Dias de retraso: " + calcularDiasRetraso();
 
     }
-
-     */
 }
