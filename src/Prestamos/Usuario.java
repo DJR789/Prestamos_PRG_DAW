@@ -78,6 +78,9 @@ public class Usuario {
                 " La fecha de registro es: " + fechaRegistro +
                 estado;
     }
+    public String getNumeroSocio(){
+        return numeroSocio;
+    }
 
 
 }

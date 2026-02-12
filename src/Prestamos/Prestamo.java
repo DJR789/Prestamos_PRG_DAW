@@ -15,7 +15,7 @@ public class Prestamo {
         if(codigoLibro==null|| !codigoLibro.matches("^[A-Z]{3}\\d{4}$")){
             throw new PrestamoInvalidoException("El codigo de libro debe tener el formato correcto");
         }
-        if (tituloLibro==null) {
+        if (tituloLibro==null || tituloLibro.isEmpty()) {
             throw new PrestamoInvalidoException("El nombre del titulo no puede estar vacio");
         }
         if (fechaPrestamo==null || fechaPrestamo.isAfter(LocalDate.now())) {

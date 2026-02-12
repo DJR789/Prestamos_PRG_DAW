@@ -22,14 +22,12 @@ public class Main {
         }
         try {
             Prestamo p1=new Prestamo("LIB0002",u,"Principito", LocalDate.of(2025,05,12));
+            Prestamo p2=new Prestamo("LIB0002",u,"", LocalDate.now());
             System.out.println(p1);
-            p1.calcularDiasRetraso();
-            p1.estaRetrasado();
-            System.out.println(p1);
+            System.out.println(p2);
         } catch (PrestamoInvalidoException | UsuarioInvalidoException j) {
             System.out.println(j.getMessage());
         }
-
 
     }
 }
