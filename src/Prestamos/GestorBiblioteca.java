@@ -27,21 +27,48 @@ public class GestorBiblioteca {
             numeroUsuarios++;
         }
     }
-    public void realizarPrestamo(String codigolibro, String titulolibro, LocalDate fechaPrestamo, Usuario u)throws PrestamoInvalidoException, UsuarioInvalidoException, LibroNoDisponibleException{
-
+    public Prestamo realizarPrestamo(String codigolibro, String titulolibro, LocalDate fechaPrestamo, Usuario usuario)
+            throws PrestamoInvalidoException, UsuarioSancionadoException, LibroNoDisponibleException, UsuarioInvalidoException {
+        if ((usuario!=null && usuario.estaSancionado())){
+            throw new UsuarioSancionadoException("El usuario ya esta sancionado y no puede realizar prestamos");
+        }
+        for (int i =0; i<numeroPrestamos; i++){
+            if (prestamos[i]!=null && prestamos[i].getCodigoLibro().equals(codigolibro) && !prestamos[i].estaDevuelto()){
+        throw new LibroNoDisponibleException("El libro no esta disponible, ya esta prestado");
+            }
+        }
+        Prestamo nuevoPrestamo= new Prestamo(codigolibro,usuario,titulolibro,fechaPrestamo);
+        if (numeroPrestamos < Max_prestamos){
+            prestamos[numeroPrestamos]= nuevoPrestamo;
+            numeroPrestamos++;
+        }
+        return nuevoPrestamo;
     }
-    /*
-    public boolean devolverLibro(){
 
+    public boolean devolverLibro(String codigoLibro, LocalDate fechaDevolucion) throws PrestamoInvalidoException{
+        for (int i=0; i<numeroPrestamos; i++){
+            if (prestamos[i]!=null && prestamos[i].getCodigoLibro().equals(codigoLibro) && !prestamos[i].estaDevuelto()){
+                prestamos[i].registrarDevolucion(fechaDevolucion);
+                int diasRetraso = prestamos[i].calcularDiasRetraso();
+                if(diasRetraso>0){
+                    Usuario socio=prestamos[i].getSocio();
+                    socio.sancionar(diasRetraso,fechaDevolucion);
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
-     */
-    /*
     public Usuario buscarUsuario(String numeroSocio){
-
+        for (int i=0; i<numeroUsuarios; i++){
+            if (usuarios[i]!=null && usuarios[i].getNumeroSocio().equals(numeroSocio)){
+                return usuarios[i];
+            }
+        }
+        return  null;
     }
 
-     */
     public Usuario[] getUsuarios() {
         return usuarios;
     }

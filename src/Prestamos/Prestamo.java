@@ -73,4 +73,14 @@ public class Prestamo {
                 " Dias de retraso: " + calcularDiasRetraso();
 
     }
+    public String getCodigoLibro(){
+        return codigoLibro;
+    }
+    public Usuario getSocio(){
+        return socio;
+    }
+    public boolean estaDevuelto(){
+        return fechaDevolucionReal!=null;
+    }
+
 }

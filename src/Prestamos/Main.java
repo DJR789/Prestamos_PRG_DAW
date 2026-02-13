@@ -29,6 +29,9 @@ public class Main {
             System.out.println(j.getMessage());
         }
 
+        GestorBiblioteca g1=new GestorBiblioteca();
+        System.out.println(g1);
+
     }
 }
 
