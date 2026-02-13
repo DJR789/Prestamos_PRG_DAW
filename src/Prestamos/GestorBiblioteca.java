@@ -16,6 +16,7 @@ public class GestorBiblioteca {
         this.numeroUsuarios=0;
         this.numeroPrestamos=0;
     }
+
     public void registrarUsuario(Usuario u)throws UsuarioInvalidoException{
         for (int i=0; i<numeroUsuarios; i++){
             if(usuarios[i].getNumeroSocio().equals(u.getNumeroSocio())){
@@ -27,6 +28,7 @@ public class GestorBiblioteca {
             numeroUsuarios++;
         }
     }
+
     public Prestamo realizarPrestamo(String codigolibro, String titulolibro, LocalDate fechaPrestamo, Usuario usuario)
             throws PrestamoInvalidoException, UsuarioSancionadoException, LibroNoDisponibleException, UsuarioInvalidoException {
         if ((usuario!=null && usuario.estaSancionado())){
@@ -76,10 +78,23 @@ public class GestorBiblioteca {
     public Prestamo[] getPrestamos() {
         return prestamos;
     }
-    /*
-    public String toString(){
 
+    @Override
+    public String toString() {
+        String resultado = "Gestor Biblioteca: ";
+
+        resultado += "Usuarios: ";
+        for (int i = 0; i < numeroUsuarios; i++) {
+            resultado += usuarios[i] + " usuarios";
+        }
+
+        resultado += "Prestamos: ";
+        for (int i = 0; i < numeroPrestamos; i++) {
+            resultado += prestamos[i] + " prestamos";
+        }
+        return resultado;
     }
 
-     */
+
+
 }
