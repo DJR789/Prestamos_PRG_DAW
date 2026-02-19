@@ -1,6 +1,7 @@
 package Prestamos;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 public class Prestamo {
@@ -83,7 +84,8 @@ public class Prestamo {
         return fechaDevolucionReal!=null;
     }
 
-    public LocalDate getFechaDevolucionPrevista() {
-        return fechaDevolucionPrevista;
+    public String getFechaDevolucionPrevista() {
+        DateTimeFormatter formato= DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return fechaDevolucionPrevista.format(formato);
     }
 }
