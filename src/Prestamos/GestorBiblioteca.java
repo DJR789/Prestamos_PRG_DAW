@@ -17,7 +17,7 @@ public class GestorBiblioteca {
         this.numeroPrestamos=0;
     }
 
-    public void registrarUsuario(Usuario u)throws UsuarioInvalidoException{
+    public void registrarUsuario(Usuario u)throws UsuarioInvalidoException, UsuarioRepetidoException{
         for (int i=0; i<numeroUsuarios; i++){
             if(usuarios[i].getNumeroSocio().equals(u.getNumeroSocio())){
                 throw new UsuarioInvalidoException("El usuario ya esta registrado");
