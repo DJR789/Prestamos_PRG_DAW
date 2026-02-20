@@ -87,7 +87,7 @@ public class Main {
         }catch (UsuarioRepetidoException ure){
             System.out.println("Error: "+ ure.getMessage());
         }catch (Exception e){
-            System.out.println("Error de fecha");
+            System.out.println("Error de fecha, usa el formato correcto");
         }
     }
 
@@ -120,7 +120,7 @@ public class Main {
         } catch (LibroNoDisponibleException e) {
             System.out.println("ERROR: " + e.getMessage());
         }catch (Exception e){
-            System.out.println("Error de fecha");
+            System.out.println("Error de fecha, usa el formato correcto");
         }
     }
 
@@ -151,7 +151,7 @@ public class Main {
         } catch (PrestamoInvalidoException pie){
             System.out.println("Error: " + pie.getMessage());
         }catch (Exception e){
-            System.out.println("Error de fecha");
+            System.out.println("Error de fecha, usa el formato correcto");
         }
     }
 

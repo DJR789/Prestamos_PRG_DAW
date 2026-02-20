@@ -1,6 +1,7 @@
 package Prestamos;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Usuario {
     private String nombre;
@@ -78,12 +79,9 @@ public class Usuario {
                 " La fecha de registro es: " + fechaRegistro +
                 estado;
     }
+
     public String getNumeroSocio(){
         return numeroSocio;
-    }
-
-    public LocalDate getFechaRegistro() {
-        return fechaRegistro;
     }
 
     public LocalDate getFechaFinSancion() {
