@@ -11,7 +11,7 @@ public class Usuario {
     private LocalDate fechaFinSancion;
 
     public Usuario(String nombre, String email, String numeroSocio, LocalDate fechaRegistro) throws UsuarioInvalidoException {
-        if (nombre==null) {
+        if (nombre.trim().isEmpty()) {
             throw new UsuarioInvalidoException("El nombre no puede estar vacío");
         }
 
@@ -28,7 +28,7 @@ public class Usuario {
         }
 
         if (fechaRegistro.isAfter(LocalDate.now())) {
-            throw new UsuarioInvalidoException("La fecha de registro no puede ser futura");
+            throw new UsuarioInvalidoException("La fecha de registro no puede ser posterior a la actual");
         }
 
         this.nombre = nombre;
@@ -82,5 +82,11 @@ public class Usuario {
         return numeroSocio;
     }
 
+    public LocalDate getFechaRegistro() {
+        return fechaRegistro;
+    }
 
+    public LocalDate getFechaFinSancion() {
+        return fechaFinSancion;
+    }
 }
